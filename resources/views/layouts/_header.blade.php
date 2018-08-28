@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                vv-bbs
+                vv-api
             </a>
         </div>
 
