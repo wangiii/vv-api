@@ -6,6 +6,7 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Transformers\TopicTransformer;
 use App\Http\Requests\Api\TopicRequest;
+use League\Fractal\TransformerAbstract;
 
 class TopicsController extends Controller
 {
@@ -17,5 +18,13 @@ class TopicsController extends Controller
 
         return $this->response->item($topic, new TopicTransformer())
             ->setStatusCode(201);
+    }
+
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        $this->authorize('update', $topic);
+
+        $topic->update($request->all());
+        return $this->response->item($topic, new TopicTransformer());
     }
 }
